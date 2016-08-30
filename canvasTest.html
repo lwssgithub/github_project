@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas test</title>
+</head>
+<body>
+	<canvas id="canvas" width="192" height="180"></canvas>
+	<script type="text/javascript">
+
+		var image = new Image();
+		image.src = 'images/img7.jpg';
+
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		image.onload = function(){
+			context.drawImage(image, 480, 200, 204.8, 153.6, 0, 0, 192, 100);
+			console.log(canvas.toDataURL('image/jpeg'));
+			contextC.drawImage(image, 0, 0, 192, 180);
+		}
+
+		var canvasC = document.createElement('canvas');
+		var contextC = canvasC.getContext('2d');
+		document.body.appendChild(canvasC);
+
+
+		var canvasTj = document.createElement('canvas');
+		canvasTj.setAttribute('width','80');
+		canvasTj.setAttribute('height','80');
+		canvasTj.style.backgroundColor = '#479399';
+		var contextTj = canvasTj.getContext('2d');
+
+		//第四阶段
+		var tjData = [
+			{'graphical': {'x': 40, 'y': 40, 'radius': 40, 'startAngle': 0, 'endAngle': Math.PI, 'anticlockwise': true}, 'fillColor': 'white'},
+			{'graphical': {'x': 40, 'y': 40, 'radius': 40, 'startAngle': Math.PI, 'endAngle': Math.PI*2, 'anticlockwise': true}, 'fillColor': 'black'},
+			{'graphical': {'x': 20, 'y': 40, 'radius': 20, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true}, 'fillColor': 'black'},
+			{'graphical': {'x': 20, 'y': 40, 'radius': 8, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true}, 'fillColor': 'white'},
+			{'graphical': {'x': 60, 'y': 40, 'radius': 20, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true}, 'fillColor': 'white'},
+			{'graphical': {'x': 60, 'y': 40, 'radius': 8, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true}, 'fillColor': 'black'}
+		];
+		function tj(obj) {
+			this.graphical = obj.graphical;
+			this.fillColor = obj.fillColor;
+			this.tjDraw = function(){
+				contextTj.beginPath();
+				contextTj.arc(this.graphical.x, this.graphical.y, this.graphical.radius, this.graphical.startAngle, this.graphical.endAngle, this.graphical.anticlockwise);
+				contextTj.fillStyle = this.fillColor;
+				contextTj.fill();
+				contextTj.closePath();
+			}
+		}
+		for(var i = 0; i < tjData.length; i++){
+			var tjObj = new tj(tjData[i]);
+			tjObj.tjDraw();
+		}
+
+		//第三阶段
+		/*var tjData = [
+			{'x': 40, 'y': 40, 'radius': 40, 'startAngle': 0, 'endAngle': Math.PI, 'anticlockwise': true, 'fillColor': 'white'},
+			{'x': 40, 'y': 40, 'radius': 40, 'startAngle': Math.PI, 'endAngle': Math.PI*2, 'anticlockwise': true, 'fillColor': 'black'},
+			{'x': 20, 'y': 40, 'radius': 20, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true, 'fillColor': 'black'},
+			{'x': 20, 'y': 40, 'radius': 8, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true, 'fillColor': 'white'},
+			{'x': 60, 'y': 40, 'radius': 20, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true, 'fillColor': 'white'},
+			{'x': 60, 'y': 40, 'radius': 8, 'startAngle': 0, 'endAngle': Math.PI*2, 'anticlockwise': true, 'fillColor': 'black'}
+		];
+		function tj(obj){
+			contextTj.beginPath();
+			contextTj.arc(obj.x, obj.y, obj.radius, obj.startAngle, obj.endAngle, obj.anticlockwise);
+			contextTj.fillStyle = obj.fillColor;
+			contextTj.fill();
+			contextTj.closePath();
+		}
+		for(var i = 0; i < tjData.length; i++){
+			tj(tjData[i]);
+		}*/
+
+		//第二阶段
+		/*function tj(x, y, radius, startAngle, endAngle, anticlockwise, fillColor){
+			contextTj.beginPath();
+			contextTj.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+			contextTj.fillStyle = fillColor;
+			contextTj.fill();
+			contextTj.closePath();
+		}
+		tj(40, 40, 40, 0, Math.PI, true, 'white');
+		tj(40, 40, 40, Math.PI, Math.PI*2, true, 'black');
+		tj(20, 40, 20, 0, Math.PI*2, true, 'black');
+		tj(20, 40, 8, 0, Math.PI*2, true, 'white');
+		tj(60, 40, 20, 0, Math.PI*2, true, 'white');
+		tj(60, 40, 8, 0, Math.PI*2, true, 'black');*/
+
+		//第一阶段
+		/*contextTj.beginPath();
+		contextTj.arc(40, 40, 40, 0, Math.PI, true);
+		contextTj.fillStyle = 'white';
+		contextTj.fill();
+		contextTj.closePath();
+		contextTj.beginPath();
+		contextTj.arc(40, 40, 40, Math.PI, Math.PI*2, true);
+		contextTj.fillStyle = 'black';
+		contextTj.fill();
+		contextTj.closePath();
+		contextTj.beginPath();
+		contextTj.arc(20, 40, 20, 0, 360, false);
+		contextTj.closePath();
+		contextTj.fillStyle = 'black';
+		contextTj.fill();
+		contextTj.beginPath();
+		contextTj.arc(20, 40, 8, 0, 360, false);
+		contextTj.closePath();
+		contextTj.fillStyle = 'white';
+		contextTj.fill();
+		contextTj.beginPath();
+		contextTj.arc(60, 40, 20, 0, 360, false);
+		contextTj.closePath();
+		contextTj.fillStyle = 'white';
+		contextTj.fill();
+		contextTj.beginPath();
+		contextTj.arc(60, 40, 8, 0, 360, false);
+		contextTj.closePath();
+		contextTj.fillStyle = 'black';
+		contextTj.fill();*/
+
+
+		document.body.appendChild(canvasTj);
+
+	</script>
+</body>
+</html>
